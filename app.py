@@ -49,7 +49,7 @@ def login():
     if request.method == "POST":
         password = request.form.get("password")
 
-        if password == "admin123":
+        if password == "DevCyclone":
             session["admin"] = True
             return redirect("/admin")
         else:
