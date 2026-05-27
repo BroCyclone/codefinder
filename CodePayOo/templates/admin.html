@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Panel</title>
+
+    <style>
+
+        body{
+            background:#020617;
+            color:white;
+            font-family:Arial;
+            padding:20px;
+        }
+
+        h1{
+            color:#00ffcc;
+        }
+
+        form{
+            margin-bottom:20px;
+        }
+
+        input{
+            padding:12px;
+            border:none;
+            border-radius:10px;
+            margin:5px;
+        }
+
+        button{
+            padding:12px 18px;
+            border:none;
+            border-radius:10px;
+            background:#00ffcc;
+            font-weight:bold;
+        }
+
+        .card{
+            background:#111827;
+            padding:15px;
+            border-radius:12px;
+            margin-top:10px;
+        }
+
+        a{
+            color:#ff4d4d;
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Admin Panel</h1>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="phone"
+            placeholder="Phone"
+            required
+        >
+
+        <input
+            type="text"
+            name="code"
+            placeholder="Code"
+            required
+        >
+
+        <button type="submit">
+            ADD
+        </button>
+
+    </form>
+
+    {% for code, phone in data.items() %}
+
+    <div class="card">
+
+        {{ phone }} = {{ code }}
+
+        <br><br>
+
+        <a href="/delete/{{ code }}">
+            DELETE
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+</body>
+</html>

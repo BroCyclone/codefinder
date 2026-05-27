@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Pay Oo</title>
+
+    <style>
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow-y: auto;
+}
+
+.results {
+    max-height: 70vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #0d0d0d;
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ffcc;
+        }
+
+        .search-box {
+            text-align: center;
+            margin: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 70%;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            background: #00ffcc;
+            cursor: pointer;
+        }
+
+        .results {
+            margin: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .card {
+            background: #1a1a1a;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #00ffcc;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="header">
+    Code Pay Oo
+</div>
+
+<div class="search-box">
+
+    <form method="POST">
+
+        <input type="text" name="query" placeholder="Search Code / Phone / Name / Date">
+
+        <button type="submit">Search</button>
+
+    </form>
+
+</div>
+
+{% if results %}
+
+<div class="results">
+
+    {% for r in results %}
+
+    <div class="card">
+
+        <b>CODE:</b> {{ r.code }} <br>
+        <b>PHONE:</b> {{ r.phone }} <br>
+        <b>SITE:</b> {{ r.site }} <br>
+        <b>USERNAME:</b> {{ r.username }} <br>
+        <b>DATE:</b> {{ r.date }}
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+</body>
+</html>

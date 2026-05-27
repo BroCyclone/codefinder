@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel</title>
+
+    <style>
+
+        body{
+            margin:0;
+            padding:20px;
+            font-family:Arial;
+            background:#020617;
+            color:white;
+        }
+
+        h2{
+            text-align:center;
+            color:#00ffcc;
+            margin-bottom:20px;
+        }
+
+        h3{
+            color:#94a3b8;
+            margin-top:20px;
+        }
+
+        input{
+            padding:10px;
+            margin:5px;
+            border:none;
+            border-radius:8px;
+            background:#0f172a;
+            color:white;
+        }
+
+        button{
+            padding:10px 15px;
+            border:none;
+            border-radius:8px;
+            background:#00ffcc;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        form{
+            margin-bottom:15px;
+        }
+
+        ul{
+            list-style:none;
+            padding:0;
+        }
+
+        li{
+            background:#111827;
+            margin:8px 0;
+            padding:10px;
+            border-radius:10px;
+            border-left:4px solid #00ffcc;
+            word-break:break-all;
+        }
+
+        .wrap{
+            max-width:600px;
+            margin:auto;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="wrap">
+
+    <h2>ADMIN PANEL</h2>
+
+    <p style="color:green;">{{ msg }}</p>
+
+    <h3>Add Code</h3>
+
+    <form method="POST">
+        <input name="code" placeholder="Enter Code">
+        <input name="phone" placeholder="Enter Phone">
+        <button name="add">Add</button>
+    </form>
+
+    <h3>Delete Code</h3>
+
+    <form method="POST">
+        <input name="code" placeholder="Enter Code">
+        <button name="delete">Delete</button>
+    </form>
+
+<h3>Total Codes: {{ data|length }}</h3>
+
+
+<a href="/export">
+    <button>EXPORT CSV</button>
+</a>
+
+
+
+
+    <h3>All Data</h3>
+
+    <ul>
+        {% for k, v in data.items() %}
+            <li>{{ k }} → {{ v }}</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+</body>
+</html>
+
