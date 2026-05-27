@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Shi Lar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Shi Lar</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial,sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-        body{
+body{
+    background:#0f172a;
+    color:white;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* MATRIX */
 #matrix{
     position:fixed;
     top:0;
@@ -22,116 +32,138 @@
     height:100%;
     z-index:-1;
     opacity:0.25;
-}        
+}
 
+.card{
+    width:100%;
+    max-width:420px;
+    background:#1e293b;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
 
-    background:#0f172a;
-            color:white;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            min-height:100vh;
-            padding:20px;
-        }
+h1{
+    text-align:center;
+    margin-bottom:15px;
+    font-size:28px;
+}
 
-        .card{
-            width:100%;
-            max-width:400px;
-            background:#1e293b;
-            border-radius:25px;
-            padding:25px;
-            box-shadow:0 0 25px rgba(0,0,0,0.4);
-        }
+/* SEARCH */
+.search-box{
+    display:flex;
+    gap:10px;
+}
 
-        h1{
-            text-align:center;
-            margin-bottom:20px;
-            font-size:28px;
-        }
+input{
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:15px;
+    outline:none;
+    background:#334155;
+    color:white;
+}
 
-        .search-box{
-            display:flex;
-            gap:10px;
-        }
+button{
+    padding:14px 18px;
+    border:none;
+    border-radius:15px;
+    background:#3b82f6;
+    color:white;
+    cursor:pointer;
+}
 
-        input{
-            flex:1;
-            padding:14px;
-            border:none;
-            border-radius:15px;
-            outline:none;
-            background:#334155;
-            color:white;
-            font-size:16px;
-        }
+/* RESULT */
+.result{
+    margin-top:20px;
+    background:#334155;
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+}
 
-        button{
-            padding:14px 18px;
-            border:none;
-            border-radius:15px;
-            background:#3b82f6;
-            color:white;
-            font-size:16px;
-            cursor:pointer;
-        }
+.copy-btn{
+    width:100%;
+    margin-top:15px;
+    background:#22c55e;
+}
 
-        button:hover{
-            opacity:0.9;
-        }
+.footer{
+    margin-top:15px;
+    text-align:center;
+    font-size:12px;
+    color:#94a3b8;
+}
 
-        .result{
-            margin-top:25px;
-            background:#334155;
-            padding:18px;
-            border-radius:18px;
-            text-align:center;
-            font-size:18px;
-            word-break:break-word;
-        }
+/* 🔥 BOTTOM DOCK */
+.bottom-dock{
+    position:fixed;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#0b1220;
+    border:1px solid #1f2937;
+    border-radius:20px;
+    padding:8px 12px;
+    display:flex;
+    gap:12px;
+    z-index:999;
+}
 
-        .copy-btn{
-            width:100%;
-            margin-top:15px;
-            background:#22c55e;
-        }
+/* BUTTON STYLE */
+.dock-btn{
+    width:60px;
+    height:60px;
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:11px;
+    color:white;
+    background:#111827;
+    transition:0.2s;
+}
 
-        .footer{
-            margin-top:20px;
-            text-align:center;
-            color:#94a3b8;
-            font-size:13px;
-        }
-    </style>
+.dock-btn:hover{
+    transform:scale(1.1);
+    background:#1f2937;
+}
+
+/* ICON STYLE */
+.icon{
+    font-size:22px;
+    margin-bottom:3px;
+}
+
+.telegram{
+    color:#22c55e;
+}
+
+.call{
+    color:#3b82f6;
+}
+</style>
 </head>
 
 <body>
+
 <canvas id="matrix"></canvas>
-
-
 
 <div class="card">
 
     <h1>Code Shi Lar</h1>
 
     <form method="POST">
-
         <div class="search-box">
-            <input
-                type="text"
-                name="query"
-                placeholder="Enter Code or Phone"
-                required
-            >
-
-            <button type="submit">
-                Search
-            </button>
+            <input type="text" name="query" placeholder="Enter Code or Phone" required>
+            <button>Search</button>
         </div>
-
     </form>
 
     {% if result %}
-
     <div class="result" id="resultText">
         {{ result }}
     </div>
@@ -139,7 +171,6 @@
     <button class="copy-btn" onclick="copyResult()">
         Copy Result
     </button>
-
     {% endif %}
 
     <div class="footer">
@@ -148,80 +179,78 @@
 
 </div>
 
+<!-- 🔥 BOTTOM DOCK CONTACT -->
+<div class="bottom-dock">
+
+    <a class="dock-btn telegram"
+       href="https://t.me/+YRGj5HwUFAIyZWE1"
+       target="_blank">
+
+        <div class="icon">✈️</div>
+        Channel
+    </a>
+
+    <a class="dock-btn telegram"
+       href="https://t.me/Bro_Cyclone"
+       target="_blank">
+
+        <div class="icon">👤</div>
+        Dev
+    </a>
+
+    <a class="dock-btn call"
+       href="tel:+959666667385">
+
+        <div class="icon">📞</div>
+        Call
+    </a>
+
+</div>
+
 <script>
-
 function copyResult(){
-
-    let text =
-    document.getElementById("resultText").innerText;
-
+    let text = document.getElementById("resultText").innerText;
     navigator.clipboard.writeText(text);
-
     alert("Copied!");
 }
-
 </script>
+
 <script>
-
-const canvas =
-document.getElementById("matrix");
-
-const ctx =
-canvas.getContext("2d");
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const letters = "01";
 const fontSize = 14;
-const columns = canvas.width/fontSize;
+const columns = canvas.width / fontSize;
 
 const drops = [];
 
-for(let x = 0; x < columns; x++){
-    drops[x] = 1;
-}
+for(let x=0;x<columns;x++) drops[x]=1;
 
 function draw(){
+    ctx.fillStyle="rgba(15,23,42,0.08)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-    ctx.fillStyle =
-    "rgba(15,23,42,0.08)";
+    ctx.fillStyle="#22c55e";
+    ctx.font=fontSize+"px monospace";
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+    for(let i=0;i<drops.length;i++){
+        const text=letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
 
-    ctx.fillStyle = "#22c55e";
-    ctx.font = fontSize + "px monospace";
-
-    for(let i = 0; i < drops.length; i++){
-
-        const text =
-        letters[Math.floor(Math.random()*letters.length)];
-
-        ctx.fillText(
-            text,
-            i * fontSize,
-            drops[i] * fontSize
-        );
-
-        if(
-            drops[i] * fontSize > canvas.height
-            &&
-            Math.random() > 0.975
-        ){
-            drops[i] = 0;
+        if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
+            drops[i]=0;
         }
 
         drops[i]++;
     }
 }
 
-setInterval(draw, 35);
-
+setInterval(draw,35);
 </script>
+
 </body>
 </html>
