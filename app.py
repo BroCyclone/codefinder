@@ -88,6 +88,25 @@ def admin():
 
     return render_template("admin.html", data=data, msg=msg)
 
+
+@app.route("/export")
+def export():
+    if not session.get("admin"):
+        return redirect("/login")
+
+    data = load_data()
+
+    csv = "code,phone\n"
+    for k, v in data.items():
+        csv += f"{k},{v}\n"
+
+    return csv, 200, {
+        "Content-Type": "text/csv",
+        "Content-Disposition": "attachment; filename=data.csv"
+    }
+
+
+
 @app.route("/logout")
 def logout():
     session.pop("admin", None)
